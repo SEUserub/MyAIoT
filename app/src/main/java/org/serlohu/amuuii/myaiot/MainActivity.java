@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +20,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+        new Thread(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        while(true) {
+                            imprimir("Hola Mundo");
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                //
+                            }
+
+                        }
+                    }
+                }
+        ).start();
     }
 
     @Override
@@ -49,4 +67,18 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    synchronized void imprimir(final String cad) {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                TextView l2 = (TextView) findViewById(R.id.TextViewEstado);
+                l2.append(cad);
+                ScrollView ll1 = (ScrollView) findViewById(R.id.ScrollViewEstado);
+                ll1.fullScroll(View.FOCUS_DOWN);
+            }});
+    }
+
+
 }

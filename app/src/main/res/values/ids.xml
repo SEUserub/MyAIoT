@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="TextViewEstado" type="id">texto</item>
+    <item name="ScrollViewEstado" type="id">scroll</item>
+    <item name="log" type="id">Logs</item>
+</resources>
